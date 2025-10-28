@@ -15,10 +15,9 @@ if [ ! -d "/app/data" ]; then
     mkdir -p /app/data
 fi
 
-# Fix ownership and permissions for the data directory
+# Fix permissions for the data directory (777 so any user can write)
 echo "[INFO] Setting up /app/data permissions..." >&2
-chown -R n8nmcp:root /app/data
-chmod -R 755 /app/data
+chmod -R 777 /app/data 2>/dev/null || true
 
 # Initialize database if it doesn't exist
 if [ ! -f "/app/data/nodes.db" ]; then
@@ -33,18 +32,17 @@ if [ ! -f "/app/data/nodes.db" ]; then
     # Check if init script exists in dist
     if [ -f "/app/dist/scripts/init-db.js" ]; then
         echo "[INFO] Running database initialization script..." >&2
-        cd /app && su-exec n8nmcp node dist/scripts/init-db.js 2>&1 | sed 's/^/[INIT] /' >&2 || echo "[WARN] Database initialization failed, will use empty database" >&2
+        cd /app && node dist/scripts/init-db.js 2>&1 | sed 's/^/[INIT] /' >&2 || echo "[WARN] Database initialization failed, will use empty database" >&2
     else
         echo "[INFO] No init script found, database will be created on first use" >&2
     fi
 else
     echo "[INFO] Database found at /app/data/nodes.db" >&2
     # Ensure existing database has correct permissions
-    chown n8nmcp:root /app/data/nodes.db
-    chmod 644 /app/data/nodes.db
+    chmod 666 /app/data/nodes.db 2>/dev/null || true
 fi
 
 echo "[INFO] Permissions configured, starting MCP server..." >&2
 
-# Execute the main command (which will use su-exec to run as n8nmcp)
+# Execute the main command (node dist/index.js)
 exec "$@"

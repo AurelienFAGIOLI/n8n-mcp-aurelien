@@ -40,15 +40,9 @@ COPY scripts/init-db.js ./dist/scripts/init-db.js
 # Copy entrypoint script
 COPY docker/entrypoint.sh /entrypoint.sh
 
-# Install su-exec for secure user switching
-RUN apk add --no-cache su-exec && \
-    chmod +x /entrypoint.sh
-
-# Create non-root user
-RUN adduser -S n8nmcp && \
-    chown -R n8nmcp:root /app && \
-    mkdir -p /app/data && \
-    chown -R n8nmcp:root /app/data
+# Make entrypoint executable
+RUN chmod +x /entrypoint.sh && \
+    mkdir -p /app/data
 
 # Environment variables
 ENV NODE_ENV=production
@@ -62,5 +56,5 @@ VOLUME ["/app/data"]
 # Set entrypoint to handle permissions and initialization
 ENTRYPOINT ["/entrypoint.sh"]
 
-# Start the MCP server as n8nmcp user
-CMD ["su-exec", "n8nmcp", "node", "dist/index.js"]
+# Start the MCP server (runs as root for now to avoid env var issues)
+CMD ["node", "dist/index.js"]
