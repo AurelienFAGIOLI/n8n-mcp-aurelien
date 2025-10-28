@@ -31,11 +31,9 @@ COPY --from=builder /app/dist ./dist
 # Copy database schema
 COPY src/database/schema.sql ./dist/database/schema.sql
 
-# Copy sample data for initialization
+# Copy pre-built database (already initialized on host)
+COPY data/nodes.db ./dist/data/nodes.db
 COPY data/nodes-sample.json ./dist/data/nodes-sample.json
-
-# Copy initialization scripts (pre-compiled from host)
-COPY scripts/init-db.js ./dist/scripts/init-db.js
 
 # Copy entrypoint script
 COPY docker/entrypoint.sh /entrypoint.sh

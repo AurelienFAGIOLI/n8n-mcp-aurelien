@@ -14,10 +14,12 @@ dist
 .env
 .env.*
 
-# Database
-data/*.db
+# Database (exclude temporary files but keep nodes.db for Docker image)
 data/*.db-shm
 data/*.db-wal
+# Allow nodes.db to be copied into Docker image
+!data/nodes.db
+!data/nodes-sample.json
 
 # IDE
 .vscode
