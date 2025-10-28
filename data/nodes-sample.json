@@ -1,0 +1,74 @@
+[
+  {
+    "name": "n8n-nodes-base.gmail",
+    "displayName": "Gmail",
+    "description": "Send and receive emails using Gmail",
+    "category": "Communication",
+    "icon": "📧"
+  },
+  {
+    "name": "n8n-nodes-base.slack",
+    "displayName": "Slack",
+    "description": "Send messages and interact with Slack",
+    "category": "Communication",
+    "icon": "💬"
+  },
+  {
+    "name": "n8n-nodes-base.googleSheets",
+    "displayName": "Google Sheets",
+    "description": "Read and write data from Google Sheets",
+    "category": "Productivity",
+    "icon": "📊"
+  },
+  {
+    "name": "n8n-nodes-base.httpRequest",
+    "displayName": "HTTP Request",
+    "description": "Make HTTP requests to any URL",
+    "category": "Core Nodes",
+    "icon": "🌐"
+  },
+  {
+    "name": "n8n-nodes-base.schedule",
+    "displayName": "Schedule Trigger",
+    "description": "Trigger workflow on a schedule",
+    "category": "Core Nodes",
+    "icon": "⏰"
+  },
+  {
+    "name": "n8n-nodes-base.manualTrigger",
+    "displayName": "Manual Trigger",
+    "description": "Manually trigger the workflow",
+    "category": "Core Nodes",
+    "icon": "▶️"
+  },
+  {
+    "name": "@n8n/n8n-nodes-langchain.openai",
+    "displayName": "OpenAI",
+    "description": "Use OpenAI models for text generation, chat, and embeddings",
+    "category": "AI",
+    "icon": "🤖",
+    "isAiNode": true
+  },
+  {
+    "name": "@n8n/n8n-nodes-langchain.chatOpenAi",
+    "displayName": "Chat OpenAI",
+    "description": "Chat with OpenAI models",
+    "category": "AI",
+    "icon": "💬",
+    "isAiNode": true
+  },
+  {
+    "name": "n8n-nodes-base.notion",
+    "displayName": "Notion",
+    "description": "Work with Notion databases and pages",
+    "category": "Productivity",
+    "icon": "📝"
+  },
+  {
+    "name": "n8n-nodes-base.airtable",
+    "displayName": "Airtable",
+    "description": "Read and write to Airtable",
+    "category": "Productivity",
+    "icon": "📋"
+  }
+]

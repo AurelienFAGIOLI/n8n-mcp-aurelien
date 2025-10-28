@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  n8n-mcp:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: n8n-mcp-aurelien:latest
+    container_name: n8n-mcp-aurelien
+    environment:
+      # n8n Configuration
+      - N8N_API_URL=${N8N_API_URL}
+      - N8N_API_KEY=${N8N_API_KEY}
+
+      # MCP Configuration
+      - MCP_MODE=stdio
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - DATABASE_PATH=/app/data/nodes.db
+
+      # Optional
+      - N8N_MCP_TELEMETRY_DISABLED=${N8N_MCP_TELEMETRY_DISABLED:-true}
+
+    volumes:
+      # Persist database
+      - n8n-mcp-data:/app/data
+
+    stdin_open: true
+    tty: true
+
+    restart: unless-stopped
+
+    networks:
+      - n8n-mcp-network
+
+volumes:
+  n8n-mcp-data:
+    name: n8n-mcp-data
+
+networks:
+  n8n-mcp-network:
+    name: n8n-mcp-network
+    driver: bridge
