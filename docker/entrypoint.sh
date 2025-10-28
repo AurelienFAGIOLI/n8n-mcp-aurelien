@@ -23,18 +23,19 @@ chmod -R 777 /app/data 2>/dev/null || true
 if [ ! -f "/app/data/nodes.db" ]; then
     echo "[INFO] Database not found, initializing..." >&2
 
-    # Check if sample data exists
-    if [ -f "/app/dist/data/nodes-sample.json" ]; then
-        # Copy sample data to persistent location
-        cp /app/dist/data/nodes-sample.json /app/data/nodes-sample.json 2>/dev/null || true
+    # Copy pre-built database from image
+    if [ -f "/app/dist/data/nodes.db" ]; then
+        echo "[INFO] Copying pre-built database from image..." >&2
+        cp /app/dist/data/nodes.db /app/data/nodes.db 2>/dev/null || true
+        chmod 666 /app/data/nodes.db 2>/dev/null || true
+        echo "[INFO] Database copied successfully" >&2
+    else
+        echo "[WARN] Pre-built database not found in image" >&2
     fi
 
-    # Check if init script exists in dist
-    if [ -f "/app/dist/scripts/init-db.js" ]; then
-        echo "[INFO] Running database initialization script..." >&2
-        cd /app && node dist/scripts/init-db.js 2>&1 | sed 's/^/[INIT] /' >&2 || echo "[WARN] Database initialization failed, will use empty database" >&2
-    else
-        echo "[INFO] No init script found, database will be created on first use" >&2
+    # Copy sample data if exists
+    if [ -f "/app/dist/data/nodes-sample.json" ]; then
+        cp /app/dist/data/nodes-sample.json /app/data/nodes-sample.json 2>/dev/null || true
     fi
 else
     echo "[INFO] Database found at /app/data/nodes.db" >&2
