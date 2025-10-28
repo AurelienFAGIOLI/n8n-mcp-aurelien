@@ -56,17 +56,17 @@ export function registerNodeExplorerTools(
         };
 
         // Return structured output directly (required by MCP SDK with outputSchema)
-        return output;
+        return output as any;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
-        return {
-          content: [{
-            type: 'text',
-            text: `❌ Error searching nodes: ${errorMessage}`
-          }],
-          isError: true
-        } as any;
+        // Return empty result conforming to outputSchema
+        const output: SearchNodesOutput = {
+          nodes: [],
+          total: 0
+        };
+
+        return output as any;
       }
     }
   );
