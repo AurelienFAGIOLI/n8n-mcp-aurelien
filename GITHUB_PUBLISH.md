@@ -57,14 +57,14 @@ cd /Users/aurelienfagioli/Documents/dev/FirstClaude/n8n-mcp-aurelien
 pwd  # Devrait afficher le chemin ci-dessus
 
 # 2. Ajouter le remote GitHub
-# ⚠️ REMPLACEZ "YOUR_USERNAME" par votre nom d'utilisateur GitHub !
-git remote add origin https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+# ⚠️ REMPLACEZ "aurelienfagioli" par votre nom d'utilisateur GitHub !
+git remote add origin https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 
 # 3. Vérifier que c'est correct
 git remote -v
 # Devrait afficher :
-# origin  https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git (fetch)
-# origin  https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git (push)
+# origin  https://github.com/aurelienfagioli/n8n-mcp-aurelien.git (fetch)
+# origin  https://github.com/aurelienfagioli/n8n-mcp-aurelien.git (push)
 
 # 4. S'assurer qu'on est sur la branche main
 git branch -M main
@@ -84,7 +84,7 @@ git push -u origin main
 
 ### Étape 1.4 : Personnaliser le Repository
 
-1. **Allez sur** : https://github.com/YOUR_USERNAME/n8n-mcp-aurelien
+1. **Allez sur** : https://github.com/aurelienfagioli/n8n-mcp-aurelien
 
 2. **Cliquez sur** l'icône ⚙️ (Settings) dans le coin supérieur droit
 
@@ -151,22 +151,22 @@ cd /Users/aurelienfagioli/Documents/dev/FirstClaude/n8n-mcp-aurelien
 
 # 2. Builder l'image
 # ⚠️ REMPLACEZ "YOUR_DOCKERHUB_USERNAME" par votre nom d'utilisateur Docker Hub !
-docker build -t YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest -f docker/Dockerfile .
+docker build -t ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest -f docker/Dockerfile .
 
 # 3. Tagger avec la version (depuis package.json)
-docker tag YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest \
-           YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker tag ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest \
+           ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 
 # 4. Pousser sur Docker Hub
-docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
-docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker push ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
+docker push ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 
 # ✅ C'est fait ! Votre image est publique sur Docker Hub !
 ```
 
 ### Étape 2.5 : Vérifier sur Docker Hub
 
-1. Allez sur https://hub.docker.com/r/YOUR_USERNAME/n8n-mcp-aurelien
+1. Allez sur https://hub.docker.com/r/aurelienfagioli/n8n-mcp-aurelien
 2. Vous devriez voir :
    - Tag `latest`
    - Tag `v1.0.0`
@@ -184,8 +184,8 @@ docker buildx inspect --bootstrap
 # 2. Builder et pousser pour amd64 + arm64
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  --tag YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest \
-  --tag YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.0.0 \
+  --tag ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest \
+  --tag ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.0.0 \
   --file docker/Dockerfile \
   --push \
   .
@@ -199,7 +199,7 @@ docker buildx build \
 
 ### Étape 3.1 : Créer une Release GitHub
 
-1. **Allez sur** : https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/releases
+1. **Allez sur** : https://github.com/aurelienfagioli/n8n-mcp-aurelien/releases
 
 2. **Cliquez** sur "Draft a new release"
 
@@ -226,26 +226,26 @@ docker buildx build \
 
    **Docker (Recommended):**
    ```bash
-   docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.0.0
+   docker pull ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 
    docker run -i --rm \
      -e N8N_API_URL="https://your-n8n.com" \
      -e N8N_API_KEY="your_key" \
      -v n8n-mcp-data:/app/data \
-     YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.0.0
+     ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.0.0
    ```
 
    **From Source:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+   git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
    cd n8n-mcp-aurelien
    npm install && npm run build && npm run db:init
    ```
 
    ### 📖 Documentation
-   - [Installation Guide](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/blob/main/INSTALL.md)
-   - [Quick Start](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/blob/main/QUICKSTART.md)
-   - [Full README](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/blob/main/README.md)
+   - [Installation Guide](https://github.com/aurelienfagioli/n8n-mcp-aurelien/blob/main/INSTALL.md)
+   - [Quick Start](https://github.com/aurelienfagioli/n8n-mcp-aurelien/blob/main/QUICKSTART.md)
+   - [Full README](https://github.com/aurelienfagioli/n8n-mcp-aurelien/blob/main/README.md)
 
    ### 🙏 Acknowledgments
    Built with ❤️ using [Claude Code](https://claude.com/code)
@@ -267,11 +267,11 @@ Maintenant que tout est publié, mettez à jour les liens dans le README :
 nano README.md
 
 # Remplacez TOUTES les occurrences de :
-# YOUR_USERNAME → votre vrai nom d'utilisateur GitHub
+# aurelienfagioli → votre vrai nom d'utilisateur GitHub
 # YOUR_DOCKERHUB_USERNAME → votre vrai nom d'utilisateur Docker Hub
 
 # Par exemple avec sed :
-sed -i '' 's/YOUR_USERNAME/aurelienfagioli/g' README.md INSTALL.md CHANGELOG.md DEPLOYMENT.md
+sed -i '' 's/aurelienfagioli/aurelienfagioli/g' README.md INSTALL.md CHANGELOG.md DEPLOYMENT.md
 
 # Commitez les changements
 git add .
@@ -293,7 +293,7 @@ Ils peuvent maintenant faire :
 
 ```bash
 # Tirer l'image
-docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
+docker pull ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Configurer Claude Desktop
 # Fichier : ~/Library/Application Support/Claude/claude_desktop_config.json
@@ -306,7 +306,7 @@ docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
         "-e", "N8N_API_URL=https://your-n8n.com",
         "-e", "N8N_API_KEY=your_key",
         "-v", "n8n-mcp-data:/app/data",
-        "YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest"
+        "ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest"
       ]
     }
   }
@@ -319,7 +319,7 @@ docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
 **Option 2 : Cloner depuis GitHub**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 npm install
 npm run build
@@ -365,10 +365,10 @@ I'm excited to share my latest project: **n8n MCP Server**!
 
 Try it out:
 ```bash
-docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
+docker pull ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
-Full docs: https://github.com/YOUR_USERNAME/n8n-mcp-aurelien
+Full docs: https://github.com/aurelienfagioli/n8n-mcp-aurelien
 
 Feedback welcome! ⭐
 ```
@@ -384,7 +384,7 @@ Create n8n workflows with natural language in @AnthropicAI Claude 🤖
 🔍 541 nodes
 🐳 Docker ready
 
-Try it: https://github.com/YOUR_USERNAME/n8n-mcp-aurelien
+Try it: https://github.com/aurelienfagioli/n8n-mcp-aurelien
 
 #n8n #AI #Automation #MCP
 ```
@@ -420,11 +420,11 @@ npm version minor  # ou patch, ou major
 git push origin main --tags
 
 # 4. Rebuilder et republier Docker
-docker build -t YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest .
-docker tag YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest \
-           YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.1.0
-docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
-docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.1.0
+docker build -t ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest .
+docker tag ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest \
+           ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.1.0
+docker push ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
+docker push ghcr.io/aurelienfagioli/n8n-mcp-aurelien:v1.1.0
 
 # 5. Créer une nouvelle release sur GitHub
 ```
@@ -436,7 +436,7 @@ docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:v1.1.0
 Si vous rencontrez des problèmes :
 
 1. 📖 Consultez [TROUBLESHOOTING.md](README.md#-troubleshooting)
-2. 🐛 Ouvrez une [issue GitHub](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/issues)
+2. 🐛 Ouvrez une [issue GitHub](https://github.com/aurelienfagioli/n8n-mcp-aurelien/issues)
 3. 💬 Demandez de l'aide sur Discord
 
 ---
@@ -445,18 +445,18 @@ Si vous rencontrez des problèmes :
 
 ```bash
 # Publier sur GitHub
-git remote add origin https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git remote add origin https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 git branch -M main
 git push -u origin main
 
 # Publier sur Docker Hub
 docker login
-docker build -t YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest -f docker/Dockerfile .
-docker push YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
+docker build -t ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest -f docker/Dockerfile .
+docker push ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Vérifier que tout fonctionne
-docker pull YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
-docker run -i --rm YOUR_DOCKERHUB_USERNAME/n8n-mcp-aurelien:latest
+docker pull ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
+docker run -i --rm ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
 ---

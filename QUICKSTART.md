@@ -107,7 +107,7 @@ npm run docker:build
         "-e", "N8N_API_URL=https://your-n8n.hostinger.com",
         "-e", "N8N_API_KEY=your_key",
         "-v", "n8n-mcp-data:/app/data",
-        "n8n-mcp-aurelien:latest"
+        "ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest"
       ]
     }
   }

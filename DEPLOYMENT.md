@@ -61,7 +61,7 @@ docker login
 
 ```bash
 # Create token at: https://hub.docker.com/settings/security
-docker login -u YOUR_USERNAME
+docker login -u aurelienfagioli
 
 # When prompted for password, paste your access token
 # Token example: dckr_pat_abc123xyz...
@@ -78,10 +78,10 @@ docker login -u YOUR_USERNAME
 cd /path/to/n8n-mcp-aurelien
 
 # Build the image
-docker build -t YOUR_USERNAME/n8n-mcp-aurelien:latest -f docker/Dockerfile .
+docker build -t aurelienfagioli/n8n-mcp-aurelien:latest -f docker/Dockerfile .
 
 # Build with version tag
-docker build -t YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0 -f docker/Dockerfile .
+docker build -t aurelienfagioli/n8n-mcp-aurelien:v1.0.0 -f docker/Dockerfile .
 ```
 
 ### Tagging Strategy
@@ -90,16 +90,16 @@ Follow semantic versioning (MAJOR.MINOR.PATCH):
 
 ```bash
 # Tag with version
-docker tag YOUR_USERNAME/n8n-mcp-aurelien:latest \
-           YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker tag aurelienfagioli/n8n-mcp-aurelien:latest \
+           aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 
 # Tag with major version
-docker tag YOUR_USERNAME/n8n-mcp-aurelien:latest \
-           YOUR_USERNAME/n8n-mcp-aurelien:v1
+docker tag aurelienfagioli/n8n-mcp-aurelien:latest \
+           aurelienfagioli/n8n-mcp-aurelien:v1
 
 # Tag with major.minor
-docker tag YOUR_USERNAME/n8n-mcp-aurelien:latest \
-           YOUR_USERNAME/n8n-mcp-aurelien:v1.0
+docker tag aurelienfagioli/n8n-mcp-aurelien:latest \
+           aurelienfagioli/n8n-mcp-aurelien:v1.0
 
 # Verify tags
 docker images | grep n8n-mcp-aurelien
@@ -121,17 +121,17 @@ docker images | grep n8n-mcp-aurelien
 
 ```bash
 # Push latest tag
-docker push YOUR_USERNAME/n8n-mcp-aurelien:latest
+docker push aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Push specific version
-docker push YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker push aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 ```
 
 ### Push All Tags
 
 ```bash
 # Push all tags at once
-docker push YOUR_USERNAME/n8n-mcp-aurelien --all-tags
+docker push aurelienfagioli/n8n-mcp-aurelien --all-tags
 ```
 
 ### Automated Script
@@ -142,7 +142,7 @@ Create a `scripts/publish-docker.sh` file:
 #!/bin/bash
 
 # Configuration
-DOCKER_USERNAME="YOUR_USERNAME"
+DOCKER_USERNAME="aurelienfagioli"
 IMAGE_NAME="n8n-mcp-aurelien"
 VERSION=$(node -p "require('./package.json').version")
 
@@ -208,8 +208,8 @@ docker buildx inspect --bootstrap
 # Build and push for multiple architectures
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  --tag YOUR_USERNAME/n8n-mcp-aurelien:latest \
-  --tag YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0 \
+  --tag aurelienfagioli/n8n-mcp-aurelien:latest \
+  --tag aurelienfagioli/n8n-mcp-aurelien:v1.0.0 \
   --file docker/Dockerfile \
   --push \
   .
@@ -228,7 +228,7 @@ Update `scripts/publish-docker.sh`:
 ```bash
 #!/bin/bash
 
-DOCKER_USERNAME="YOUR_USERNAME"
+DOCKER_USERNAME="aurelienfagioli"
 IMAGE_NAME="n8n-mcp-aurelien"
 VERSION=$(node -p "require('./package.json').version")
 
@@ -268,7 +268,7 @@ on:
   workflow_dispatch:  # Allow manual trigger
 
 env:
-  DOCKER_USERNAME: YOUR_USERNAME
+  DOCKER_USERNAME: aurelienfagioli
   IMAGE_NAME: n8n-mcp-aurelien
 
 jobs:
@@ -397,10 +397,10 @@ git push origin main --tags
 
 ```bash
 # Pull latest
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:latest
+docker pull aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Pull specific version
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker pull aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 ```
 
 ### Test Run
@@ -411,14 +411,14 @@ docker run -i --rm \
   -e N8N_API_URL="https://demo.n8n.io" \
   -e N8N_API_KEY="test_key" \
   -v n8n-mcp-data:/app/data \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
 ### Verify Multi-Arch
 
 ```bash
 # Check manifest
-docker manifest inspect YOUR_USERNAME/n8n-mcp-aurelien:latest
+docker manifest inspect aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Should show multiple platforms:
 # - linux/amd64
@@ -431,14 +431,14 @@ docker manifest inspect YOUR_USERNAME/n8n-mcp-aurelien:latest
 
 ```bash
 docker run --platform linux/amd64 \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
 **On Apple Silicon Mac:**
 
 ```bash
 docker run --platform linux/arm64 \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
 ---
@@ -456,13 +456,13 @@ After publishing to Docker Hub, update:
 
 ```bash
 # Pull and run in one command
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:latest
+docker pull aurelienfagioli/n8n-mcp-aurelien:latest
 
 docker run -i --rm \
   -e N8N_API_URL="https://your-n8n.com" \
   -e N8N_API_KEY="your_key" \
   -v n8n-mcp-data:/app/data \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 ```
 
@@ -473,14 +473,14 @@ docker run -i --rm \
 
 ```bash
 # Pull latest version
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:latest
+docker pull aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Run immediately
 docker run -i --rm \
   -e N8N_API_URL="https://your-n8n.com" \
   -e N8N_API_KEY="your_key" \
   -v n8n-mcp-data:/app/data \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 ```
 
@@ -510,7 +510,7 @@ First stable release of n8n MCP Server!
 ### 📦 Docker Installation
 
 ```bash
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:v1.0.0
+docker pull aurelienfagioli/n8n-mcp-aurelien:v1.0.0
 ```
 
 ### 📖 Documentation
@@ -580,7 +580,7 @@ Keep:
 docker builder prune -af
 
 # Rebuild without cache
-docker build --no-cache -t YOUR_USERNAME/n8n-mcp-aurelien:latest .
+docker build --no-cache -t aurelienfagioli/n8n-mcp-aurelien:latest .
 ```
 
 ### Push Denied

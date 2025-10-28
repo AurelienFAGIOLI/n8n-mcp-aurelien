@@ -13,7 +13,7 @@ Ce guide explique comment installer et utiliser le serveur n8n MCP depuis GitHub
 
 **1. Cloner le repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 ```
 
@@ -67,7 +67,7 @@ Ajoutez cette configuration :
         "-e", "N8N_API_URL=https://your-n8n-instance.com",
         "-e", "N8N_API_KEY=your_api_key_here",
         "-v", "n8n-mcp-data:/app/data",
-        "n8n-mcp-aurelien:latest"
+        "ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest"
       ]
     }
   }
@@ -96,7 +96,7 @@ Si vous préférez utiliser Node.js directement :
 
 **1. Cloner et installer**
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 npm install
 ```

@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build output (will be copied from builder stage)
+dist
+
+# Environment
+.env
+.env.*
+
+# Database
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (not needed in image)
+*.md
+!README.md
+
+# Docker
+docker-compose.yml
+.dockerignore

@@ -165,12 +165,12 @@ Found a bug? Have a feature request? See [CONTRIBUTING.md](CONTRIBUTING.md) for 
 
 ## Links
 
-- [Repository](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien)
-- [Docker Hub](https://hub.docker.com/r/YOUR_USERNAME/n8n-mcp-aurelien)
-- [Issues](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/issues)
-- [Releases](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/releases)
+- [Repository](https://github.com/aurelienfagioli/n8n-mcp-aurelien)
+- [Docker Hub](https://hub.docker.com/r/aurelienfagioli/n8n-mcp-aurelien)
+- [Issues](https://github.com/aurelienfagioli/n8n-mcp-aurelien/issues)
+- [Releases](https://github.com/aurelienfagioli/n8n-mcp-aurelien/releases)
 
 ---
 
-[Unreleased]: https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/releases/tag/v1.0.0
+[Unreleased]: https://github.com/aurelienfagioli/n8n-mcp-aurelien/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/aurelienfagioli/n8n-mcp-aurelien/releases/tag/v1.0.0

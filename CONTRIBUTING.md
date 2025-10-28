@@ -184,7 +184,7 @@ Describe how you tested your changes
 1. **Fork and clone the repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 ```
 

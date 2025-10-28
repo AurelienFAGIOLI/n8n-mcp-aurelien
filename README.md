@@ -107,7 +107,7 @@ The fastest way to get started:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 
 # 2. Configure your n8n credentials
@@ -148,7 +148,7 @@ Choose your preferred installation method:
 **Step 1: Clone and Configure**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 cp .env.example .env
 ```
@@ -193,7 +193,7 @@ docker run -i --rm \
 **Step 1: Clone and Install**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 npm install
 ```
@@ -218,23 +218,25 @@ npm run db:init
 npm start
 ```
 
-### Option 3: Pull from Docker Hub
+### Option 3: Pull from GitHub Container Registry (Recommended)
 
-> 📦 **Coming Soon**: Once published to Docker Hub, you'll be able to pull directly:
+> 📦 **Available Now**: Pull the pre-built image directly from GHCR:
 
 ```bash
-# Pull the latest image
-docker pull YOUR_USERNAME/n8n-mcp-aurelien:latest
+# Pull the latest image from GitHub Container Registry
+docker pull ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 
 # Run immediately
 docker run -i --rm \
   -e N8N_API_URL="https://your-n8n.com" \
   -e N8N_API_KEY="your_key" \
   -v n8n-mcp-data:/app/data \
-  YOUR_USERNAME/n8n-mcp-aurelien:latest
+  ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest
 ```
 
-> See [DEPLOYMENT.md](DEPLOYMENT.md) for Docker Hub publishing instructions.
+> ⚠️ **Important**: The `-v n8n-mcp-data:/app/data` volume mount is required for the database!
+>
+> See [DEPLOYMENT.md](DEPLOYMENT.md) for more deployment options.
 
 ---
 
@@ -261,7 +263,7 @@ Add the MCP server to Claude Desktop's configuration file:
         "-e", "N8N_API_URL=https://your-n8n-instance.com",
         "-e", "N8N_API_KEY=your_api_key_here",
         "-v", "n8n-mcp-data:/app/data",
-        "n8n-mcp-aurelien:latest"
+        "ghcr.io/aurelienfagioli/n8n-mcp-aurelien:latest"
       ]
     }
   }
@@ -602,7 +604,7 @@ LOG_LEVEL=debug npm start
 
 1. 📖 Check [INSTALL.md](INSTALL.md) for installation issues
 2. 📖 Review [QUICKSTART.md](QUICKSTART.md) for setup guide
-3. 🐛 [Open an issue](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/issues) on GitHub
+3. 🐛 [Open an issue](https://github.com/aurelienfagioli/n8n-mcp-aurelien/issues) on GitHub
 4. 📚 Consult [MCP Documentation](https://modelcontextprotocol.io/)
 5. 📚 Review [n8n API Docs](https://docs.n8n.io/api/)
 
@@ -660,7 +662,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/n8n-mcp-aurelien.git
+git clone https://github.com/aurelienfagioli/n8n-mcp-aurelien.git
 cd n8n-mcp-aurelien
 
 # Install dependencies
@@ -737,9 +739,9 @@ This project wouldn't exist without:
 ## 📞 Contact & Support
 
 - **Author**: Aurélien Fagioli
-- **GitHub**: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- **Issues**: [Report a bug](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/issues)
-- **Discussions**: [Ask questions](https://github.com/YOUR_USERNAME/n8n-mcp-aurelien/discussions)
+- **GitHub**: [@aurelienfagioli](https://github.com/aurelienfagioli)
+- **Issues**: [Report a bug](https://github.com/aurelienfagioli/n8n-mcp-aurelien/issues)
+- **Discussions**: [Ask questions](https://github.com/aurelienfagioli/n8n-mcp-aurelien/discussions)
 
 ---
 
@@ -747,7 +749,7 @@ This project wouldn't exist without:
 
 **⭐ Star this repo if you find it useful!**
 
-Built with ❤️ and ☕ by [Aurélien Fagioli](https://github.com/YOUR_USERNAME)
+Built with ❤️ and ☕ by [Aurélien Fagioli](https://github.com/aurelienfagioli)
 
 🤖 **Powered by Claude Code** • 🔧 **n8n** • 🐳 **Docker**
 
