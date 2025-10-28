@@ -55,28 +55,8 @@ export function registerNodeExplorerTools(
           total: nodes.length
         };
 
-        let message = `🔍 Found ${nodes.length} matching node(s):\n\n`;
-
-        nodes.forEach((node, index) => {
-          message += `${index + 1}. **${node.displayName}**\n`;
-          message += `   Type: ${node.name}\n`;
-          message += `   Category: ${node.category}\n`;
-          if (node.isAiNode) {
-            message += `   🤖 AI-Enabled\n`;
-          }
-          message += `   Description: ${node.description}\n\n`;
-        });
-
-        if (nodes.length === 0) {
-          message = `No nodes found matching "${input.query}". Try a different search term.`;
-        }
-
-        return {
-          content: [{
-            type: 'text',
-            text: message
-          }],
-        } as any;
+        // Return structured output directly (required by MCP SDK with outputSchema)
+        return output;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 

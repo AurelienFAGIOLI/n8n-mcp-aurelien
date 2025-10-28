@@ -55,31 +55,8 @@ export function registerTemplateTools(
           total: templates.length
         };
 
-        let message = `📦 Found ${templates.length} matching template(s):\n\n`;
-
-        templates.forEach((template, index) => {
-          const nodes = template.nodes.split(',').map(n => n.trim());
-          message += `${index + 1}. **${template.name}**\n`;
-          message += `   ID: ${template.id}\n`;
-          if (template.category) {
-            message += `   Category: ${template.category}\n`;
-          }
-          message += `   Nodes: ${nodes.join(', ')}\n`;
-          message += `   Description: ${template.description}\n\n`;
-        });
-
-        if (templates.length === 0) {
-          message = `No templates found matching "${input.query}". Try a different search term.`;
-        } else {
-          message += `💡 Use get-template with the template ID to see the full workflow JSON.`;
-        }
-
-        return {
-          content: [{
-            type: 'text',
-            text: message
-          }],
-        } as any;
+        // Return structured output directly (required by MCP SDK with outputSchema)
+        return output;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
