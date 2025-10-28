@@ -24,16 +24,6 @@ export function registerNodeExplorerTools(
         category: z.string().optional().describe('Filter by category'),
         aiOnly: z.boolean().optional().describe('Show only AI/LangChain nodes'),
         limit: z.number().optional().describe('Maximum results (default: 20)')
-      },
-      outputSchema: {
-        nodes: z.array(z.object({
-          name: z.string(),
-          displayName: z.string(),
-          description: z.string(),
-          category: z.string(),
-          isAiNode: z.boolean()
-        })),
-        total: z.number()
       }
     },
     async (input: SearchNodesInput) => {
@@ -44,29 +34,42 @@ export function registerNodeExplorerTools(
           limit: input.limit || 20
         });
 
-        const output: SearchNodesOutput = {
-          nodes: nodes.map(node => ({
-            name: node.name,
-            displayName: node.displayName,
-            description: node.description,
-            category: node.category,
-            isAiNode: node.isAiNode || false
-          })),
-          total: nodes.length
-        };
+        if (nodes.length === 0) {
+          return {
+            content: [{
+              type: 'text',
+              text: `No nodes found matching "${input.query}".`
+            }]
+          } as any;
+        }
 
-        // Return structured output directly (required by MCP SDK with outputSchema)
-        return output as any;
+        let message = `🔍 Found ${nodes.length} node(s) matching "${input.query}":\n\n`;
+        nodes.forEach((node, index) => {
+          message += `${index + 1}. **${node.displayName}** (${node.name})\n`;
+          message += `   📂 Category: ${node.category}\n`;
+          message += `   📝 ${node.description}\n`;
+          if (node.isAiNode) {
+            message += `   🤖 AI-Enabled\n`;
+          }
+          message += `\n`;
+        });
+
+        return {
+          content: [{
+            type: 'text',
+            text: message
+          }]
+        } as any;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
-        // Return empty result conforming to outputSchema
-        const output: SearchNodesOutput = {
-          nodes: [],
-          total: 0
-        };
-
-        return output as any;
+        return {
+          content: [{
+            type: 'text',
+            text: `❌ Error searching nodes: ${errorMessage}`
+          }],
+          isError: true
+        } as any;
       }
     }
   );
@@ -80,20 +83,6 @@ export function registerNodeExplorerTools(
       description: 'Get detailed documentation and usage examples for a specific n8n node',
       inputSchema: {
         nodeName: z.string().describe('Exact node name (e.g., "n8n-nodes-base.gmail")')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        node: z.object({
-          name: z.string(),
-          displayName: z.string(),
-          description: z.string(),
-          category: z.string(),
-          documentation: z.string().optional(),
-          parameters: z.string(),
-          examples: z.string().optional(),
-          isAiNode: z.boolean()
-        }).optional(),
-        error: z.string().optional()
       }
     },
     async (input: { nodeName: string }) => {
@@ -171,26 +160,32 @@ export function registerNodeExplorerTools(
     {
       title: 'List Node Categories',
       description: 'Get a list of all node categories available in n8n',
-      inputSchema: {},
-      outputSchema: {
-        categories: z.array(z.string()),
-        total: z.number()
-      }
+      inputSchema: {}
     },
     async () => {
       try {
         const categories = db.getNodeCategories();
 
-        // Return structured data directly (required by MCP SDK with outputSchema)
+        let message = `📂 Available node categories (${categories.length}):\n\n`;
+        categories.forEach((cat, index) => {
+          message += `${index + 1}. ${cat}\n`;
+        });
+
         return {
-          categories: categories,
-          total: categories.length
+          content: [{
+            type: 'text',
+            text: message
+          }]
         } as any;
       } catch (error) {
-        // Return empty array on error
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
         return {
-          categories: [],
-          total: 0
+          content: [{
+            type: 'text',
+            text: `❌ Error listing categories: ${errorMessage}`
+          }],
+          isError: true
         } as any;
       }
     }
