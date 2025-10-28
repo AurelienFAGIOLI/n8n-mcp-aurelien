@@ -31,13 +31,24 @@ COPY --from=builder /app/dist ./dist
 # Copy database schema
 COPY src/database/schema.sql ./dist/database/schema.sql
 
+# Copy sample data for initialization
+COPY data/nodes-sample.json ./dist/data/nodes-sample.json
+
+# Copy initialization scripts (pre-compiled from host)
+COPY scripts/init-db.js ./dist/scripts/init-db.js
+
+# Copy entrypoint script
+COPY docker/entrypoint.sh /entrypoint.sh
+
+# Install su-exec for secure user switching
+RUN apk add --no-cache su-exec && \
+    chmod +x /entrypoint.sh
+
 # Create non-root user
 RUN adduser -S n8nmcp && \
     chown -R n8nmcp:root /app && \
     mkdir -p /app/data && \
     chown -R n8nmcp:root /app/data
-
-USER n8nmcp
 
 # Environment variables
 ENV NODE_ENV=production
@@ -48,5 +59,8 @@ ENV MCP_MODE=stdio
 # Volume for database
 VOLUME ["/app/data"]
 
-# Start the MCP server
-CMD ["node", "dist/index.js"]
+# Set entrypoint to handle permissions and initialization
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Start the MCP server as n8nmcp user
+CMD ["su-exec", "n8nmcp", "node", "dist/index.js"]
