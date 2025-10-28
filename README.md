@@ -3,8 +3,11 @@
 ![n8n MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 **Complete Model Context Protocol (MCP) server for n8n automation**. Enables Claude to create, manage, and execute n8n workflows through natural language.
+
+> 📦 **Installation depuis GitHub** : Consultez [INSTALL.md](INSTALL.md) pour les instructions complètes d'installation avec Docker ou Node.js.
 
 ## 🎯 Features
 
