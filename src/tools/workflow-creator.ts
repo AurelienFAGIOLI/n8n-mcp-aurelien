@@ -28,13 +28,6 @@ export function registerWorkflowCreatorTool(
         description: z.string().describe('Natural language description of the workflow (e.g., "Send email every Monday at 9am")'),
         name: z.string().optional().describe('Custom name for the workflow'),
         useTemplate: z.boolean().optional().describe('Whether to search for and use a similar template (default: true)')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        workflowId: z.string().optional(),
-        workflowUrl: z.string().optional(),
-        workflowName: z.string().optional(),
-        error: z.string().optional()
       }
     },
     async (input: CreateWorkflowInput) => {

@@ -31,16 +31,6 @@ export function registerWorkflowTools(
         tags: z.array(z.string()).optional().describe('Filter by tags'),
         search: z.string().optional().describe('Search in workflow names'),
         limit: z.number().optional().describe('Maximum number of workflows to return (default: 50)')
-      },
-      outputSchema: {
-        workflows: z.array(z.object({
-          id: z.string(),
-          name: z.string(),
-          active: z.boolean(),
-          tags: z.array(z.string()).optional(),
-          updatedAt: z.string().optional()
-        })),
-        total: z.number()
       }
     },
     async (input: ListWorkflowsInput) => {
@@ -99,19 +89,6 @@ export function registerWorkflowTools(
       description: 'Get full details of a specific workflow including nodes and connections',
       inputSchema: {
         workflowId: z.string().describe('The ID of the workflow to retrieve')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        workflow: z.object({
-          id: z.string(),
-          name: z.string(),
-          active: z.boolean(),
-          nodes: z.array(z.any()),
-          connections: z.record(z.any()),
-          settings: z.record(z.any()).optional(),
-          tags: z.array(z.string()).optional()
-        }).optional(),
-        error: z.string().optional()
       }
     },
     async (input: GetWorkflowInput) => {
@@ -164,11 +141,6 @@ export function registerWorkflowTools(
           nodes: z.array(z.any()).optional().describe('Updated nodes array'),
           tags: z.array(z.string()).optional().describe('Updated tags')
         }).describe('Changes to apply to the workflow')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        workflowId: z.string().optional(),
-        error: z.string().optional()
       }
     },
     async (input: UpdateWorkflowInput) => {
@@ -219,11 +191,6 @@ export function registerWorkflowTools(
       inputSchema: {
         workflowId: z.string().describe('The ID of the workflow to delete'),
         confirm: z.boolean().describe('Confirmation flag (must be true to delete)')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        message: z.string(),
-        error: z.string().optional()
       }
     },
     async (input: { workflowId: string; confirm: boolean }) => {
@@ -269,12 +236,6 @@ export function registerWorkflowTools(
       inputSchema: {
         workflowId: z.string().describe('The ID of the workflow to execute'),
         data: z.record(z.any()).optional().describe('Optional input data for the workflow')
-      },
-      outputSchema: {
-        success: z.boolean(),
-        executionId: z.string().optional(),
-        status: z.string().optional(),
-        error: z.string().optional()
       }
     },
     async (input: { workflowId: string; data?: Record<string, any> }) => {

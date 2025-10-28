@@ -163,27 +163,20 @@ export function registerTemplateTools(
       try {
         const stats = db.getStats();
 
-        let message = `📊 n8n MCP Database Statistics\n\n`;
-        message += `📦 Total Nodes: ${stats.totalNodes}\n`;
-        message += `🤖 AI-Enabled Nodes: ${stats.aiNodes}\n`;
-        message += `📂 Categories: ${stats.categories}\n`;
-        message += `🎨 Workflow Templates: ${stats.totalTemplates}\n`;
-
+        // Return structured data directly (required by MCP SDK with outputSchema)
         return {
-          content: [{
-            type: 'text',
-            text: message
-          }]
+          totalNodes: stats.totalNodes,
+          totalTemplates: stats.totalTemplates,
+          aiNodes: stats.aiNodes,
+          categories: stats.categories
         } as any;
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-
+        // Return empty stats on error
         return {
-          content: [{
-            type: 'text',
-            text: `❌ Error getting statistics: ${errorMessage}`
-          }],
-          isError: true
+          totalNodes: 0,
+          totalTemplates: 0,
+          aiNodes: 0,
+          categories: 0
         } as any;
       }
     }

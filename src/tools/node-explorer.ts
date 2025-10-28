@@ -181,26 +181,16 @@ export function registerNodeExplorerTools(
       try {
         const categories = db.getNodeCategories();
 
-        let message = `📂 Available node categories (${categories.length}):\n\n`;
-        categories.forEach((cat, index) => {
-          message += `${index + 1}. ${cat}\n`;
-        });
-
+        // Return structured data directly (required by MCP SDK with outputSchema)
         return {
-          content: [{
-            type: 'text',
-            text: message
-          }]
+          categories: categories,
+          total: categories.length
         } as any;
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-
+        // Return empty array on error
         return {
-          content: [{
-            type: 'text',
-            text: `❌ Error listing categories: ${errorMessage}`
-          }],
-          isError: true
+          categories: [],
+          total: 0
         } as any;
       }
     }
